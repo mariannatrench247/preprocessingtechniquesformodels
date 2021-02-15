@@ -1,0 +1,27 @@
+from tensorflow import keras
+from tensorflow.keras import layers 
+
+
+#data augmentation with horizontal flipping, rotation, zooms
+data_augmentation = keras.Sequential(
+[
+    preprocessing.RandomFlip("horizontal"),
+    preprocessing.RandomRotation(0.1),
+    preprocessing.RandomZoom(0.1)
+ ])
+ 
+ # model with augmentation stage 
+ input_shape = (32,32, 3) 
+ classes = 10 
+ inputs = keras.Input(shape=input_shape)
+ 
+ #augment images 
+ x = data_augmentation(inputs)
+ 
+ #rescale image values to [0,1]
+ x = preprocessing.Rescaling(1.0/ 255)(x) 
+ # add rest of the model 
+ outputs = keras.applications.ResNet50(
+  weights=None, input_shape=input_shape, classes=classes
+)(x)
+model = keras.Model(inputs, outputs)
