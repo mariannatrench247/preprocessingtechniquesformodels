@@ -30,3 +30,12 @@
  - cross talk (colors close to each other (Database queries cose to eachother))
  
  # Feature Extraction 
+
+## Grayscale Pixel Values as Features 
+
+- 
+
+
+## Mean Pixel Value of Channels
+
+## Extracting Edge Features
